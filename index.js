@@ -5,6 +5,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const nc = require("nextcloud-node-client");
 const e = require("express");
 let cron = require("node-cron");
+let moment = require("moment");
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = process.env.BOT_TOKEN;
@@ -52,10 +53,13 @@ async function getShifts(day = new Date()) {
   }
 
   // format (todays) date to string for comparison
-  let datestr = day.toLocaleDateString("de-DE").replaceAll("/", ".");
+  let datestr = moment().format("DD.MM.YYYY");
 
   // find todays shifts and return them
   for (let i = 0; i < jsonObj.length - 1; i++) {
+    console.log("\n checking:");
+    console.log(jsonObj[i]["Datum"].trim());
+    console.log(datestr);
     if (jsonObj[i]["Datum"].trim() == datestr) {
       return jsonObj[i];
     }
