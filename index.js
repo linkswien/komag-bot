@@ -53,7 +53,7 @@ async function getShifts(day = new Date()) {
   }
 
   // format (todays) date to string for comparison
-  let datestr = moment().format("DD.MM.YYYY");
+  let datestr = moment().format("DD.M.YYYY");
 
   // find todays shifts and return them
   for (let i = 0; i < jsonObj.length - 1; i++) {
